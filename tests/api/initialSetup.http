@@ -1,0 +1,748 @@
+### initial auth
+POST http://10.200.222.72:8080/lims-api/v1/authenticate
+accept: */*
+Content-Type: application/json
+
+{
+  "username": "dev@tcra.go.tz",
+  "password": "Moro@sua1"
+}
+
+> {% client.global.set("auth_token", response.body.data.token);
+client.global.set("user_id", response.body.data.id); %}
+
+###
+POST http://10.200.222.72:8080/lims-api/v1/forms/save-item/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJST0xFIjoiUk9MRV9GRUVfU1RSVUNUVVJFX0RFQUNUSVZBVEVfQUNUSVZBVEUiLCJzdWIiOiJkZXZAdGNyYS5nby50eiIsImV4cCI6MTYyNDk4NjY1MCwiaWF0IjoxNjI0OTUwNjUwfQ.Eb7yvCUTeIuDio47jNrDJkYISooFgEyt7NCEMd-YMSo
+Content-Type: application/json
+
+[
+  {
+    "id": 0,
+    "name": "Width of studio (M)",
+    "displayName": "Width of studio (M)",
+    "flag": "PARAMETER",
+    "feedbackType": "DYNAMIC",
+    "parent": 115,
+    "options": []
+  },
+  {
+    "id": 0,
+    "name": "Length of studio (M)",
+    "displayName": "Length of studio (M)",
+    "flag": "PARAMETER",
+    "feedbackType": "DYNAMIC",
+    "parent": 115,
+    "options": []
+  },
+  {
+    "id": 0,
+    "name": "Mixer(s)/Console Deck Condition",
+    "displayName": "Mixer(s)/Console Deck Condition",
+    "flag": "PARAMETER",
+    "feedbackType": "FIXED",
+    "parent": 116,
+    "options": [
+      "Good",
+      "Satisfactory",
+      "Poor",
+      "Not Installed"
+    ]
+  },
+  {
+    "id": 0,
+    "name": "Microphones",
+    "displayName": "Microphones",
+    "flag": "PARAMETER",
+    "feedbackType": "DYNAMIC",
+    "parent": 116,
+    "options": [
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "id": 0,
+    "name": "Microphones",
+    "displayName": "Microphones",
+    "flag": "PARAMETER",
+    "feedbackType": "FIXED",
+    "parent": 116,
+    "options": [
+      "Good",
+      "Satisfactory",
+      "Poor",
+      "Not  Installed "
+    ]
+  },
+  {
+    "id": 0,
+    "name": "Acoustic treatment",
+    "displayName": "Acoustic treatment",
+    "flag": "PARAMETER",
+    "feedbackType": "FIXED",
+    "parent": 116,
+    "options": [
+      "Good",
+      "Satisfactory",
+      "Poor",
+      "Not installed"
+    ]
+  },
+  {
+    "id": 0,
+    "name": "On air lamp",
+    "displayName": "On air lamp",
+    "flag": "PARAMETER",
+    "feedbackType": "FIXED",
+    "parent": 116,
+    "options": [
+      "Installed",
+      "Not Installed"
+    ]
+  },
+  {
+    "id": 0,
+    "name": "Air Condition",
+    "displayName": "Air Condition",
+    "flag": "PARAMETER",
+    "feedbackType": "FIXED",
+    "parent": 116,
+    "options": [
+      "Installed",
+      "Not Installed"
+    ]
+  }
+]
+
+
+
+# curl -X GET "http://10.200.222.72:8080/lims-api/v1/workflow-types/list-active" -H  "accept: application/json" -H  "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJST0xFIjoiUk9MRV9TVEFUVVNfVklFV19BQ1RJVkUiLCJzdWIiOiJkZXZAdGNyYS5nby50eiIsImV4cCI6MTYyMzAwNTI1MywiaWF0IjoxNjIyOTY5MjUzfQ.emgOMXavtmg_uVJo_RLwGbNSAt6VQBgwc_I3r8ZfTLc"
+GET http://10.200.222.72:8080/lims-api/v1/workflow-types/list
+accept: application/json
+Authorization: Bearer {{auth_token}}
+
+###
+
+# curl -X GET "http://10.200.222.72:8080/lims-api/v1/notification-template/list" -H  "accept: application/json" -H  "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJST0xFIjoiUk9MRV9TVEFUVVNfVklFV19BQ1RJVkUiLCJzdWIiOiJkZXZAdGNyYS5nby50eiIsImV4cCI6MTYyMzAwNTI1MywiaWF0IjoxNjIyOTY5MjUzfQ.emgOMXavtmg_uVJo_RLwGbNSAt6VQBgwc_I3r8ZfTLc"
+GET http://10.200.222.72:8080/lims-api/v1/notification-template/list
+accept: application/json
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "code": 2000,
+  "status": true,
+  "message": "NOTIFICATION TEMPLATES RETRIEVED SUCCESSFULLY",
+  "data": [
+    {
+      "id": 19,
+      "name": "Application",
+      "displayName": "Payment verification"
+    },
+    {
+      "id": 14,
+      "name": "Application",
+      "displayName": "Completed Ministry assessment"
+    },
+    {
+      "id": 15,
+      "name": "Application",
+      "displayName": "Construction permit"
+    },
+    {
+      "id": 16,
+      "name": "Application",
+      "displayName": "Inspection"
+    },
+    {
+      "id": 17,
+      "name": "Application",
+      "displayName": "Free transmission letter"
+    },
+    {
+      "id": 18,
+      "name": "Application",
+      "displayName": "Paid initial fee"
+    },
+    {
+      "id": 3,
+      "name": "Application",
+      "displayName": "Paid Application fee"
+    },
+    {
+      "id": 4,
+      "name": "Application",
+      "displayName": "Application evaluation Rejected"
+    },
+    {
+      "id": 5,
+      "name": "Application",
+      "displayName": "Application evaluation Approved"
+    },
+    {
+      "id": 6,
+      "name": "Application",
+      "displayName": "Public notice completed"
+    },
+    {
+      "id": 7,
+      "name": "Application",
+      "displayName": "Presentation Invitation completed"
+    },
+    {
+      "id": 8,
+      "name": "Application",
+      "displayName": "Management Presentation Resubmission"
+    },
+    {
+      "id": 9,
+      "name": "Application",
+      "displayName": "Management Presentation Rejected"
+    },
+    {
+      "id": 11,
+      "name": "Application",
+      "displayName": "Board Presentation Resubmission"
+    },
+    {
+      "id": 12,
+      "name": "Application",
+      "displayName": "Board Presentation  Rejected"
+    },
+    {
+      "id": 13,
+      "name": "Application",
+      "displayName": "Board Presentation  Approved"
+    },
+    {
+      "id": 10,
+      "name": "Application ",
+      "displayName": "Management Presentation Approved"
+    },
+    {
+      "id": 20,
+      "name": "Licence",
+      "displayName": "Licence Issued"
+    },
+    {
+      "id": 21,
+      "name": "Licence",
+      "displayName": "Licence annual fee"
+    },
+    {
+      "id": 22,
+      "name": "Licence",
+      "displayName": "Licence expiry"
+    },
+    {
+      "id": 1,
+      "name": "Test Notification",
+      "displayName": "Test Notification "
+    }
+  ]
+}
+
+###
+
+
+# curl -X POST "http://10.200.222.72:8080/lims-api/v1/workflows/save" -H  "accept: application/json" -H  "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJST0xFIjoiUk9MRV9TVEFUVVNfVklFV19BQ1RJVkUiLCJzdWIiOiJkZXZAdGNyYS5nby50eiIsImV4cCI6MTYyMzAwNTI1MywiaWF0IjoxNjIyOTY5MjUzfQ.emgOMXavtmg_uVJo_RLwGbNSAt6VQBgwc_I3r8ZfTLc" -H  "Content-Type: application/json" -d "{  \"code\": \"string\",  \"description\": \"string\",  \"name\": \"string\",  \"steps\": [    {      \"applicableState\": \"ENTITY_REGISTRATION\",      \"applicantNotify\": true,      \"code\": \"string\",      \"currentRoleID\": 0,      \"decisions\": [        {          \"decision\": \"APPROVE\",          \"notificationTemplateId\": 0,          \"statusId\": 0        }      ],      \"id\": 0,      \"isPayment\": true,      \"name\": \"string\",      \"notifyRoles\": [        0      ]    }  ],  \"workflowType\": 0}"
+POST http://10.200.222.72:8080/lims-api/v1/workflows/save
+accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJST0xFIjoiUk9MRV9MSVNUX09GX1ZBTFVFU19WSUVXX0FMTCIsInN1YiI6ImRldkB0Y3JhLmdvLnR6IiwiZXhwIjoxNjI0NjQzNTA4LCJpYXQiOjE2MjQ2MDc1MDh9.xGeCW1u3FlL6EdMBeuLMEiis-fq5xy7TPPG-39Ks8iw
+Content-Type: application/json
+
+{
+  "code": "ASL-01",
+  "name": "Transfer of Licence",
+  "description": "Transfer of Licence",
+  "workflowType": 9,
+  "steps": [
+    {
+      "code": "ALO 01",
+      "name": "Assign Licensing Officer",
+      "formId": 0,
+      "dueDays": 3,
+      "applicantNotify": false,
+      "stepType": "NORMAL",
+      "currentRoleID": 4,
+      "decisions": [
+        {
+          "decision": "ASSIGN",
+          "notificationTemplateId": 30,
+          "statusId": 49
+        }
+      ],
+      "applicableState": "UNCHARGABLE",
+      "attachmentType": 0,
+      "id": 0
+    },
+    {
+      "id": 0,
+      "code": "LE01",
+      "name": "Licence Evaluation",
+      "dueDays": 3,
+      "applicantNotify": true,
+      "stepType": "NORMAL",
+      "attachmentType": 0,
+      "applicableState": "UNCHARGABLE",
+      "decisions": [
+        {
+          "id": 0,
+          "decision": "RECOMMEND",
+          "statusId": 14,
+          "notificationTemplateId": 24
+        }
+      ],
+      "formId": 0,
+      "currentRoleID": 3
+    },
+    {
+      "id": 0,
+      "code": "LEHL01",
+      "name": "Licence Evaluation HL",
+      "dueDays": 3,
+      "applicantNotify": true,
+      "stepType": "NORMAL",
+      "attachmentType": 0,
+      "applicableState": "UNCHARGABLE",
+      "decisions": [
+        {
+          "id": 0,
+          "decision": "RECOMMEND",
+          "statusId": 1,
+          "notificationTemplateId": 24
+        },
+        {
+          "id": 0,
+          "decision": "REVISE",
+          "statusId": 1,
+          "notificationTemplateId": 31
+        }
+      ],
+      "formId": 0,
+      "currentRoleID": 4
+    },
+    {
+      "id": 0,
+      "code": "LEDLE",
+      "name": "Licence Evaluation DLE",
+      "dueDays": 3,
+      "applicantNotify": true,
+      "stepType": "NORMAL",
+      "attachmentType": 0,
+      "applicableState": "UNCHARGABLE",
+      "decisions": [
+        {
+          "id": 0,
+          "decision": "REJECT",
+          "statusId": 1,
+          "notificationTemplateId": 0
+        },
+        {
+          "id": 0,
+          "decision": "REVISE",
+          "statusId": 1,
+          "notificationTemplateId": 0
+        },
+        {
+          "id": 0,
+          "decision": "RESUBMIT",
+          "statusId": 1,
+          "notificationTemplateId": 0
+        },
+        {
+          "id": 0,
+          "decision": "RECOMMEND",
+          "statusId": 1,
+          "notificationTemplateId": 0
+        },
+        {
+          "id": 0,
+          "decision": "APPROVE",
+          "statusId": 1,
+          "notificationTemplateId": 0
+        }
+      ],
+      "formId": 0,
+      "currentRoleID": 0
+    },
+    {
+      "id": 0,
+      "code": "PNG01",
+      "name": "Public Notice Generation ",
+      "dueDays": 0,
+      "applicantNotify": false,
+      "stepType": "DOCUMENT_GENERATION",
+      "attachmentType": 26,
+      "applicableState": "UNCHARGABLE",
+      "decisions": [
+        {
+          "id": 0,
+          "decision": "GENERATE",
+          "statusId": 19,
+          "notificationTemplateId": 25
+        }
+      ],
+      "formId": 0,
+      "currentRoleID": 0
+    },
+    {
+      "id": 0,
+      "code": "IPN01",
+      "name": "Issued Public Notice",
+      "dueDays": 3,
+      "applicantNotify": true,
+      "stepType": "NORMAL",
+      "attachmentType": 0,
+      "applicableState": "UNCHARGABLE",
+      "decisions": [
+        {
+          "id": 0,
+          "decision": "COMPLETE",
+          "statusId": 1,
+          "notificationTemplateId": 0
+        }
+      ],
+      "formId": 0,
+      "currentRoleID": 0
+    },
+    {
+      "id": 0,
+      "code": "PI01",
+      "name": "Presentation Invitation",
+      "dueDays": 3,
+      "applicantNotify": true,
+      "stepType": "NORMAL",
+      "attachmentType": 0,
+      "applicableState": "UNCHARGABLE",
+      "decisions": [
+        {
+          "id": 0,
+          "decision": "COMPLETE",
+          "statusId": 1,
+          "notificationTemplateId": 0
+        }
+      ],
+      "formId": 0,
+      "currentRoleID": 0
+    },
+    {
+      "id": 0,
+      "code": "AI01",
+      "name": "Acknowledge Invitation",
+      "dueDays": 3,
+      "applicantNotify": false,
+      "stepType": "NORMAL",
+      "attachmentType": 0,
+      "applicableState": "UNCHARGABLE",
+      "decisions": [
+        {
+          "id": 0,
+          "decision": "REVISE",
+          "statusId": 1,
+          "notificationTemplateId": 0
+        }
+      ],
+      "formId": 0,
+      "currentRoleID": 0
+    },
+    {
+      "id": 0,
+      "code": "PPA01",
+      "name": "Assign LO",
+      "dueDays": 3,
+      "applicantNotify": false,
+      "stepType": "NORMAL",
+      "attachmentType": 0,
+      "applicableState": "UNCHARGABLE",
+      "decisions": [
+        {
+          "id": 0,
+          "decision": "ASSIGN",
+          "statusId": 49,
+          "notificationTemplateId": 30
+        },
+        {
+          "id": 0,
+          "decision": "RECOMMEND",
+          "statusId": 1,
+          "notificationTemplateId": 0
+        }
+      ],
+      "formId": 0,
+      "currentRoleID": 4
+    },
+    {
+      "id": 0,
+      "code": "RPA01",
+      "name": "Review Presentation Assessment LO",
+      "dueDays": 3,
+      "applicantNotify": false,
+      "stepType": "NORMAL",
+      "attachmentType": 0,
+      "applicableState": "UNCHARGABLE",
+      "decisions": [
+        {
+          "id": 0,
+          "decision": "RECOMMEND",
+          "statusId": 52,
+          "notificationTemplateId": 2
+        }
+      ],
+      "formId": 0,
+      "currentRoleID": 3
+    },
+    {
+      "id": 0,
+      "code": "RPA01",
+      "name": "Review Presentation Assessment HL",
+      "dueDays": 3,
+      "applicantNotify": false,
+      "stepType": "NORMAL",
+      "attachmentType": 0,
+      "applicableState": "UNCHARGABLE",
+      "decisions": [
+        {
+          "id": 0,
+          "decision": "REVISE",
+          "statusId": 51,
+          "notificationTemplateId": 2
+        },
+        {
+          "id": 0,
+          "decision": "RECOMMEND",
+          "statusId": 52,
+          "notificationTemplateId": 2
+        }
+      ],
+      "formId": 0,
+      "currentRoleID": 4
+    },
+    {
+      "id": 0,
+      "code": "ALBP01",
+      "name": "Review Presentation Assessment DLE",
+      "dueDays": 3,
+      "applicantNotify": false,
+      "stepType": "NORMAL",
+      "attachmentType": 0,
+      "applicableState": "UNCHARGABLE",
+      "decisions": [
+        {
+          "id": 0,
+          "decision": "REVISE",
+          "statusId": 51,
+          "notificationTemplateId": 2
+        },
+        {
+          "id": 0,
+          "decision": "REJECT",
+          "statusId": 24,
+          "notificationTemplateId": 9
+        },
+        {
+          "id": 0,
+          "decision": "RECOMMEND",
+          "statusId": 52,
+          "notificationTemplateId": 2
+        },
+        {
+          "id": 0,
+          "decision": "RESUBMIT",
+          "statusId": 53,
+          "notificationTemplateId": 8
+        },
+        {
+          "id": 0,
+          "decision": "APPROVE",
+          "statusId": 25,
+          "notificationTemplateId": 10
+        }
+      ],
+      "formId": 0,
+      "currentRoleID": 5
+    },
+    {
+      "id": 0,
+      "code": "MCDG",
+      "name": "Ministry Consultation DG",
+      "dueDays": 3,
+      "applicantNotify": true,
+      "stepType": "NORMAL",
+      "attachmentType": 0,
+      "applicableState": "UNCHARGABLE",
+      "decisions": [
+        {
+          "id": 0,
+          "decision": "COMPLETE",
+          "statusId": 30,
+          "notificationTemplateId": 0
+        }
+      ],
+      "formId": 0,
+      "currentRoleID": 12
+    },
+    {
+      "id": 0,
+      "code": "MR01",
+      "name": "Ministry Response",
+      "dueDays": 3,
+      "applicantNotify": true,
+      "stepType": "NORMAL",
+      "attachmentType": 0,
+      "applicableState": "UNCHARGABLE",
+      "decisions": [
+        {
+          "id": 0,
+          "decision": "COMPLETE",
+          "statusId": 30,
+          "notificationTemplateId": 29
+        }
+      ],
+      "formId": 0,
+      "currentRoleID": 14
+    },
+    {
+      "id": 0,
+      "code": "CMR01",
+      "name": "Capture Ministry Response",
+      "dueDays": 3,
+      "applicantNotify": false,
+      "stepType": "NORMAL",
+      "attachmentType": 0,
+      "applicableState": "UNCHARGABLE",
+      "decisions": [
+        {
+          "id": 0,
+          "decision": "COMPLETE",
+          "statusId": 32,
+          "notificationTemplateId": 29
+        }
+      ],
+      "formId": 0,
+      "currentRoleID": 12
+    },
+    {
+      "id": 0,
+      "code": "CMDDLE01",
+      "name": "Capture Ministry Decision DLE",
+      "dueDays": 3,
+      "applicantNotify": false,
+      "stepType": "NORMAL",
+      "attachmentType": 0,
+      "applicableState": "UNCHARGABLE",
+      "decisions": [
+        {
+          "id": 0,
+          "decision": "REJECT",
+          "statusId": 32,
+          "notificationTemplateId": 29
+        },
+        {
+          "id": 0,
+          "decision": "APPROVE",
+          "statusId": 32,
+          "notificationTemplateId": 29
+        },
+        {
+          "id": 0,
+          "decision": "RESUBMIT",
+          "statusId": 32,
+          "notificationTemplateId": 29
+        }
+      ],
+      "formId": 0,
+      "currentRoleID": 9
+    },
+    {
+      "code": "PCP01",
+      "name": "Create Bill Accountant",
+      "formId": 0,
+      "dueDays": 0,
+      "applicantNotify": true,
+      "stepType": "NORMAL",
+      "currentRoleID": 7,
+      "decisions": [
+        {
+          "decision": "PAYMENT",
+          "notificationTemplateId": 18,
+          "statusId": 33
+        },
+        {
+          "decision": "COMPLETE",
+          "notificationTemplateId": 2,
+          "statusId": 1
+        }
+      ],
+      "applicableState": "UNCHARGABLE",
+      "attachmentType": 0,
+      "id": 0
+    },
+    {
+      "code": "VIP AC",
+      "name": "Payment Transfer of licence Fee",
+      "formId": 0,
+      "dueDays": 3,
+      "applicantNotify": false,
+      "stepType": "PAYMENT",
+      "currentRoleID": 0,
+      "decisions": [],
+      "applicableState": "END_OF_YEAR",
+      "attachmentType": 0,
+      "id": 0
+    },
+    {
+      "code": "ILDG",
+      "name": "Verify Payment Accounts",
+      "formId": 0,
+      "dueDays": 3,
+      "applicantNotify": true,
+      "stepType": "NORMAL",
+      "currentRoleID": 7,
+      "decisions": [
+        {
+          "decision": "COMPLETE",
+          "notificationTemplateId": 19,
+          "statusId": 41
+        }
+      ],
+      "applicableState": "UNCHARGABLE",
+      "attachmentType": 0,
+      "id": 0
+    },
+    {
+      "code": "IADG",
+      "name": "Issue Addendum DG",
+      "formId": 0,
+      "dueDays": 3,
+      "applicantNotify": false,
+      "stepType": "NORMAL",
+      "currentRoleID": 12,
+      "decisions": [
+        {
+          "decision": "COMPLETE",
+          "notificationTemplateId": 20,
+          "statusId": 42
+        }
+      ],
+      "applicableState": "UNCHARGABLE",
+      "attachmentType": 0,
+      "id": 0
+    }
+  ]
+}
+
+###
+
+# curl -X GET "http://10.200.222.72:8080/lims-api/v1/license-reports?keyword=all" -H  "accept: application/json"
+GET http://10.200.222.72:8080/lims-api/v1/license-reports/applications?pageSize=1
+accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJST0xFIjoiUk9MRV9MSVNUX09GX1ZBTFVFU19WSUVXX0FMTCIsInN1YiI6ImRldkB0Y3JhLmdvLnR6IiwiZXhwIjoxNjI0MDUxMjI4LCJpYXQiOjE2MjQwMTUyMjh9.JZjVBbSe-YVEvKDWvSHQrx1eEq_joem2xrZPkL-LSOE
+Content-Type: application/json
+
+###
+
+

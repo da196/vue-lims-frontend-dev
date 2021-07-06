@@ -1,0 +1,156 @@
+# curl -X GET "http://10.200.222.72:8080/lims-api/v1/user/single/1" -H  "accept: */*"
+GET http://10.200.222.72:8080/lims-api/v1/user/single/{{user_id}}
+accept: */*
+Authorization: Bearer {{auth_token}}
+
+###
+# curl -X GET "http://10.200.222.72:8080//lims-api/v1/license/fees" -H  "accept: */*"
+GET http://10.200.222.72:8080/lims-api/license/fees
+accept: */*
+Authorization: {{auth_token}}
+
+###
+
+
+# curl -X GET "http://10.200.222.72:8080//lims-api/v1/geo-locations/list" -H  "accept: */*"
+GET http://10.200.222.72:8080/lims-api/v1/geo-locations/list
+accept: */*
+Authorization: {{auth_token}}
+
+###
+# curl -X GET "http://10.200.222.72:8080//lims-api/v1/geo-locations/list" -H  "accept: */*"
+GET http://10.200.222.72:8080/lims-api/v1/user/list
+accept: */*
+Authorization: {{auth_token}}
+
+###
+
+# curl -X GET "http://10.200.222.72:8080//lims-api/v1/listOfValue/list" -H  "accept: */*"
+GET http://10.200.222.72:8080/lims-api/v1/listOfValue/list
+accept: */*
+Authorization: {{auth_token}}
+
+###
+
+
+# curl -X POST "http://10.200.222.72:8080/lims-api/v1/geoLocation/save" -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"code\":\"string\",\"name\":\"string\",\"description\":\"string\",\"parentId\":0,\"type\":\"string\"}"
+POST http://10.200.222.72:8080/lims-api/v1/geoLocation/save
+accept: */*
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{"code":"string","name":"string","description":{{auth_token}},"parentId":0,"type":"string"}
+
+###
+
+# curl -X POST "http://10.200.222.72:8080/lims-api/v1/entity-category/save" -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"id\":0,\"code\":\"string\",\"name\":\"string\",\"description\":\"string\",\"status\":0}"
+POST http://10.200.222.72:8080/lims-api/v1/entity-category/save
+accept: */*
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "id": 0,
+  "code": "ENTYTY2",
+  "name": "TEST ENTITY",
+  "description": "INITIAL ENTY",
+  "status": 1
+}
+
+###
+
+
+### entity-category
+GET http://10.200.222.72:8080/lims-api/v1/entity-category/list
+accept: */*
+Authorization: Bearer {{auth_token}}
+
+
+###
+
+
+
+### license-category-controller
+GET http://10.200.222.72:8080/lims-api/v1/licenseCategory/list
+accept: */*
+Authorization: Bearer {{auth_token}}
+
+###
+
+### adff
+GET http://10.200.222.72:8080/lims-api/v1/geo-locations/list
+Accept: */*
+Authorization: {{auth_token}}
+
+
+
+
+
+
+
+### initial auth
+POST http://10.200.222.72:8080/lims-api/v1/authenticate
+accept: */*
+Content-Type: application/json
+
+{
+  "username": "dev@tcra.go.tz",
+  "password": "Moro@sua1"
+}
+
+> {% client.global.set("auth_token", response.body.data.token);
+client.global.set("user_id", response.body.data.id); %}
+
+### Authorization by token, part 2. Use token to authorize.
+GET http://10.200.222.72:8080/lims-api/v1/permissions/list
+Authorization: Bearer {{auth_token}}
+
+###
+##
+
+
+
+
+### Get attachement list
+GET http://10.200.222.72:8080/lims-api/attachments/list
+accept: */*
+Authorization: Bearer {{auth_token}}
+
+###
+
+
+### initial auth
+POST http://localhost:1234/v1/authenticate
+accept: */*
+Content-Type: application/json
+
+{
+  "username": "dev@tcra.go.tz",
+  "password": "Moro@sua1"
+}
+
+> {% client.global.set("auth_token", response.body.data.token);
+client.global.set("user_id", response.body.data.id); %}
+
+###
+
+
+GET http://localhost:1234/v1/workflows/list
+accept: application/json
+Authorization: Bearer {{auth_token}}
+
+###
+
+
+
+
+POST http://10.200.223.34:8889/api/v1/sms/send
+Authorization: Basic lims Tcr@L1m5
+Accept: application/json
+Content-Type: application/json
+
+{
+  "from": "TCRA",
+  "to": "255784995577",
+  "text": "LIMS is UP and RUNNING."
+}
